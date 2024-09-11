@@ -5,25 +5,52 @@
     </div>
     <div>
         <label for=""> Bim2</label>
-        <input id = "b2" name ="b2" type = "number" #b2> 
+        <input id="b2" name="b2" type="number" #b2> 
     </div>
     <div>
         <label for=""> Bim3</label>
-        <input id = "b3" name ="b3" type = "number" #b3> 
+        <input id="b3" name="b3" type="number" #b3> 
     </div>
     <div>
         <label for=""> Bim4</label>
-        <input id = "b4" name ="b4" type = "number" #b4> 
+        <input id="b4" name="b4" type="number" #b4> 
     </div>
     <div> 
-        <input type="button" value = "calcular"  (click)="calcularMediaParcial(+b1.value, 
-                                                                               + b2.value, 
-                                                                               + b3.value, 
-                                                                               + b4.value)">
+        <input 
+        type="button" 
+        value="calcular" 
+        (click)="calcularMediaParcial(+ b1.value, + b2.value, + b3.value, + b4.value)">
     </div>
 
 </form>
-<div *ngIf="mediaParcial" >
-    <p>Média = {{mediaParcial}}</p>
+<div *ngIf="this.boletim.mediaParcial" >
+    <p>Média = {{this.boletim.mediaParcial}}</p>
+    <p></p>
+</div>
+
+<div *ngIf="this.situacao == 'Prova Final'" >
+    <p>Média = {{this.boletim.obterSituacao()}}</p>
+
+    <form>
+        <div>
+            <label for="">Nota Final: </label>
+            <input id="ntf" name="ntf" type="number" #notaFinal> 
+        </div>
+        <div> 
+            <input 
+            type="button" 
+            value="calcular" 
+            (click)="calcularMediaFinal(+ this.boletim.mediaParcial, + .notaFinal.value )">
+        </div>
+    </form>
+</div>
+
+<div *ngIf="this.alerta != ''" >
+    <p>{{this.alerta}}</p>
+</div>
+
+
+<div *ngIf="this.boletim.mediaFinal" >
+    <p>Média = {{this.boletim.mediaFinal}}</p>
     <p></p>
 </div>
